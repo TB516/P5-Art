@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "checkJs": true,
+    "types": ["@types/p5/global.d.ts"] // Ensure p5.js types are included
+  },
+  "include": ["./src/**/*.js"] // Update this to match your folder structure
+}
