@@ -1,20 +1,16 @@
 const CANVAS_WIDTH = 400;
 const CANVAS_HEIGHT = 400;
-const MAX_CIRCLES = 10000;
-const BACKGROUND_COLOR = color(200, 170, 220);
+const MAX_CIRCLES = 1000;
 const BLACK = color(0, 0, 0);
 
+let BACKGROUND_COLOR = color(200, 170, 220);
 let numCircles = 0;
 let drawingStep = stepForward;
 
 const drawRandCircle = () => {
   const diameter = random(25, 51);
 
-  circle(
-    random(diameter / 2, CANVAS_WIDTH - diameter / 2 + 1),
-    random(diameter / 2, CANVAS_HEIGHT - diameter / 2 + 1),
-    diameter
-  );
+  circle(random(0, CANVAS_WIDTH + 1), random(0, CANVAS_HEIGHT + 1), diameter);
 };
 
 function stepForward() {
@@ -25,6 +21,7 @@ function stepForward() {
   drawRandCircle();
 
   if (numCircles === MAX_CIRCLES) {
+    BACKGROUND_COLOR = color(random(0, 255), random(0, 255), random(0, 255));
     drawingStep = stepBackward;
   }
 }
@@ -49,3 +46,6 @@ function setup() {
 function draw() {
   drawingStep();
 }
+
+setup();
+draw();
