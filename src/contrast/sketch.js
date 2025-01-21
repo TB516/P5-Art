@@ -46,6 +46,3 @@ function setup() {
 function draw() {
   drawingStep();
 }
-
-setup();
-draw();
