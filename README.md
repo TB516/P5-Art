@@ -4,7 +4,7 @@ Template repo for p5.js desktop development. Create p5.js art scripts without ne
 
 ## Recommendations
 
-Due to the nature of this environment, it is recommended to download [this extension](https://marketplace.visualstudio.com/items?itemName=garrit.p5canvas) to view the art during development.
+Due to the nature of this environment, it is recommended to download [this extension](https://marketplace.visualstudio.com/items?itemName=filipesabella.live-p5) to view the art during development.
 
 ## Setup
 
