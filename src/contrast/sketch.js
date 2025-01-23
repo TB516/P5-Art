@@ -70,3 +70,7 @@ function draw() {
 function windowResized() {
   init();
 }
+
+window.setup = setup;
+window.draw = draw;
+window.windowResized = windowResized;
