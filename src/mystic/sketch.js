@@ -1,8 +1,23 @@
 import { Snake } from "./Snake.js";
 
+/**
+ * @type {boolean}
+ */
 const WINDOW_SKETCH = false;
 
-let canvasWidth, canvasHeight;
+/**
+ * @type {number}
+ */
+let canvasWidth;
+
+/**
+ * @type {number}
+ */
+let canvasHeight;
+
+/**
+ * @type {Snake}
+ */
 let snake = new Snake(0, 0, 1);
 
 const init = () => {

@@ -1,7 +1,17 @@
 export class Position {
-  x = 0;
-  y = 0;
+  /**
+   * @type {number}
+   */
+  x;
+  /**
+   * @type {number}
+   */
+  y;
 
+  /**
+   * @param {number} x
+   * @param {number} y
+   */
   constructor(x, y) {
     this.x = x;
     this.y = y;

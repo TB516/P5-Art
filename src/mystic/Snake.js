@@ -1,14 +1,52 @@
 import { Position } from "./Position.js";
 
 export class Snake {
+  /**
+   * @type {Position[]}
+   * @readonly
+   */
   body;
+  /**
+   * @type {number}
+   * @readonly
+   */
   bodyLength;
+  /**
+   * @type {number}
+   * @readonly
+   */
   bodeSizeScale;
+  /**
+   * @type {number}
+   * @readonly
+   */
   noiseScale;
+  /**
+   * @type {number}
+   * @readonly
+   */
   gaussianMean;
+  /**
+   * @type {number}
+   * @readonly
+   */
   gaussianSd;
+  /**
+   * @type {number}
+   * @readonly
+   */
   hueScale;
 
+  /**
+   * @param {number} startingX
+   * @param {number} startingY
+   * @param {number} bodyLength
+   * @param {number} [bodeSizeScale=25]
+   * @param {number} [noiseScale=100]
+   * @param {number} [gaussianMean=0]
+   * @param {number} [gaussianSd=10]
+   * @param {number} [hueScale=360]
+   */
   constructor(
     startingX,
     startingY,
@@ -33,6 +71,11 @@ export class Snake {
     }
   }
 
+  /**
+   * @param {number} frameCount
+   * @param {number} canvasWidth
+   * @param {number} canvasHeight
+   */
   update(frameCount, canvasWidth, canvasHeight) {
     let posStorage = new Position(this.body[0].x, this.body[0].y);
 
@@ -71,6 +114,9 @@ export class Snake {
     }
   }
 
+  /**
+   * @param {number} frameCount
+   */
   draw(frameCount) {
     for (let i = 0; i < this.bodyLength; ++i) {
       fill(
