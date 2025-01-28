@@ -1,12 +1,45 @@
+/**
+ * @typedef {import("p5").Color} Color
+ */
+
+/**
+ * @type {boolean}
+ */
 const WINDOW_SKETCH = false;
+
+/**
+ * @type {Color}
+ */
 let BLACK;
 
+/**
+ * @type {number}
+ */
 let canvasWidth;
+
+/**
+ * @type {number}
+ */
 let canvasHeight;
 
+/**
+ * @type {number}
+ */
 let maxCircles;
+
+/**
+ * @type {number}
+ */
 let numCircles = 0;
+
+/**
+ * @type {Color}
+ */
 let backgroundColor;
+
+/**
+ * @type {VoidFunction}
+ */
 let drawingStep;
 
 const drawRandCircle = () => {
