@@ -1,5 +1,10 @@
 import { Position } from "./Position.js";
 
+const noiseScale = 100;
+const gaussianMean = 0;
+const gaussianSd = 10;
+const hueScale = 360;
+
 export class Snake {
   body;
   bodyLength = 0;
@@ -18,12 +23,20 @@ export class Snake {
 
     //#region Head
     this.body[0].x +=
-      noise(this.body[0].x, this.body[0].y, frameCount) +
-      1 * randomGaussian(0, 10);
+      noise(
+        this.body[0].x / noiseScale,
+        this.body[0].y / noiseScale,
+        frameCount
+      ) +
+      1 * randomGaussian(gaussianMean, gaussianSd);
 
     this.body[0].y +=
-      noise(this.body[0].x, this.body[0].y, frameCount * 1000) +
-      1 * randomGaussian(0, 10);
+      noise(
+        this.body[0].x / noiseScale,
+        this.body[0].y / noiseScale,
+        frameCount * 1000
+      ) +
+      1 * randomGaussian(gaussianMean, gaussianSd);
 
     if (this.body[0].x > canvasWidth) this.body[0].x -= canvasWidth;
     if (this.body[0].x < 0) this.body[0].x += canvasWidth;
@@ -31,6 +44,7 @@ export class Snake {
     if (this.body[0].y < 0) this.body[0].y += canvasHeight;
     //#endregion
 
+    //Update tail
     for (let i = 1; i < this.bodyLength; ++i) {
       const posStorage2 = new Position(this.body[i].x, this.body[i].y);
 
@@ -44,12 +58,21 @@ export class Snake {
 
   draw(frameCount) {
     for (let i = 0; i < this.bodyLength; ++i) {
-      fill(noise(this.body[i].x, this.body[i].y, frameCount) * 360, 100, 100);
+      fill(
+        noise(this.body[i].x / noiseScale, this.body[i].y / noiseScale) *
+          hueScale,
+        100,
+        100
+      );
 
       square(
         this.body[i].x,
         this.body[i].y,
-        noise(this.body[i].x, this.body[i].y, frameCount) * 25
+        noise(
+          this.body[i].x / noiseScale,
+          this.body[i].y / noiseScale,
+          frameCount
+        ) * 25
       );
     }
   }
