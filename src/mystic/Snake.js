@@ -1,16 +1,31 @@
 import { Position } from "./Position.js";
 
-const noiseScale = 100;
-const gaussianMean = 0;
-const gaussianSd = 10;
-const hueScale = 360;
-
 export class Snake {
   body;
-  bodyLength = 0;
+  bodyLength;
+  bodeSizeScale;
+  noiseScale;
+  gaussianMean;
+  gaussianSd;
+  hueScale;
 
-  constructor(startingX, startingY, bodyLength) {
+  constructor(
+    startingX,
+    startingY,
+    bodyLength,
+    bodeSizeScale = 25,
+    noiseScale = 100,
+    gaussianMean = 0,
+    gaussianSd = 10,
+    hueScale = 360
+  ) {
     this.bodyLength = bodyLength;
+    this.bodeSizeScale = bodeSizeScale;
+    this.noiseScale = noiseScale;
+    this.gaussianMean = gaussianMean;
+    this.gaussianSd = gaussianSd;
+    this.hueScale = hueScale;
+
     this.body = [];
 
     for (let i = 0; i < bodyLength; ++i) {
@@ -24,19 +39,19 @@ export class Snake {
     //#region Head
     this.body[0].x +=
       noise(
-        this.body[0].x / noiseScale,
-        this.body[0].y / noiseScale,
+        this.body[0].x / this.noiseScale,
+        this.body[0].y / this.noiseScale,
         frameCount
       ) +
-      1 * randomGaussian(gaussianMean, gaussianSd);
+      1 * randomGaussian(this.gaussianMean, this.gaussianSd);
 
     this.body[0].y +=
       noise(
-        this.body[0].x / noiseScale,
-        this.body[0].y / noiseScale,
+        this.body[0].x / this.noiseScale,
+        this.body[0].y / this.noiseScale,
         frameCount * 1000
       ) +
-      1 * randomGaussian(gaussianMean, gaussianSd);
+      1 * randomGaussian(this.gaussianMean, this.gaussianSd);
 
     if (this.body[0].x > canvasWidth) this.body[0].x -= canvasWidth;
     if (this.body[0].x < 0) this.body[0].x += canvasWidth;
@@ -59,8 +74,10 @@ export class Snake {
   draw(frameCount) {
     for (let i = 0; i < this.bodyLength; ++i) {
       fill(
-        noise(this.body[i].x / noiseScale, this.body[i].y / noiseScale) *
-          hueScale,
+        noise(
+          this.body[i].x / this.noiseScale,
+          this.body[i].y / this.noiseScale
+        ) * this.hueScale,
         100,
         100
       );
@@ -69,10 +86,10 @@ export class Snake {
         this.body[i].x,
         this.body[i].y,
         noise(
-          this.body[i].x / noiseScale,
-          this.body[i].y / noiseScale,
+          this.body[i].x / this.noiseScale,
+          this.body[i].y / this.noiseScale,
           frameCount
-        ) * 25
+        ) * this.bodeSizeScale
       );
     }
   }
