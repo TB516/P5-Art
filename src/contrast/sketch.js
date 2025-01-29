@@ -4,12 +4,6 @@
  */
 
 /**
- * If the program is running on windowsketch.art
- * @type {boolean}
- */
-const WINDOW_SKETCH = false;
-
-/**
  * P5 Black color
  * @type {Color}
  */
@@ -71,20 +65,12 @@ const coverDots = () => {
 };
 
 const init = () => {
-  let canvasWidth = windowWidth;
-  let canvasHeight = windowHeight;
-
-  if (WINDOW_SKETCH) {
-    canvasWidth = 390;
-    canvasHeight = 1215;
-  }
-
   backgroundColor = color(200, 170, 220);
-  maxCircles = (canvasWidth + canvasHeight) * 2;
+  maxCircles = (windowWidth + windowHeight) * 2;
   numCircles = 0;
   drawingStep = addDots;
 
-  createCanvas(canvasWidth, canvasHeight);
+  createCanvas(windowWidth, windowHeight);
   background(backgroundColor);
 };
 
