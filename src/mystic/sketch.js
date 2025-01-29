@@ -1,16 +1,25 @@
 import { Snake } from "./Snake.js";
 
 /**
- * @type {Snake}
+ * @type {Snake[]}
  */
-let snake = new Snake(0, 0, 1);
+const snakes = [];
+
+/**
+ * @type {number}
+ */
+let snakeCount;
 
 const init = () => {
-  snake = new Snake(windowWidth / 2, windowHeight / 2, 15);
-
   createCanvas(windowWidth, windowHeight);
   background(255);
   colorMode(HSB, 360, 100, 100);
+
+  snakeCount = Math.ceil(width / 250);
+  snakes.length = 0;
+  for (let i = 0; i < snakeCount; ++i) {
+    snakes.push(new Snake(width / 2, height / 2, 15, height / 25));
+  }
 };
 
 function setup() {
@@ -18,8 +27,10 @@ function setup() {
 }
 
 function draw() {
-  snake.update(frameCount, width, height);
-  snake.draw(frameCount);
+  for (let i = 0; i < snakeCount; ++i) {
+    snakes[i].update(frameCount, width, height);
+    snakes[i].draw(frameCount);
+  }
 }
 
 function windowResized() {
