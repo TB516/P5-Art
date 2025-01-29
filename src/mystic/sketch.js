@@ -1,37 +1,14 @@
 import { Snake } from "./Snake.js";
 
 /**
- * @type {boolean}
- */
-const WINDOW_SKETCH = false;
-
-/**
- * @type {number}
- */
-let canvasWidth;
-
-/**
- * @type {number}
- */
-let canvasHeight;
-
-/**
  * @type {Snake}
  */
 let snake = new Snake(0, 0, 1);
 
 const init = () => {
-  canvasWidth = windowWidth;
-  canvasHeight = windowHeight;
+  snake = new Snake(windowWidth / 2, windowHeight / 2, 15);
 
-  if (WINDOW_SKETCH) {
-    canvasWidth = 390;
-    canvasHeight = 1215;
-  }
-
-  snake = new Snake(canvasWidth / 2, canvasHeight / 2, 15);
-
-  createCanvas(canvasWidth, canvasHeight);
+  createCanvas(windowWidth, windowHeight);
   background(255);
   colorMode(HSB, 360, 100, 100);
 };
@@ -41,7 +18,7 @@ function setup() {
 }
 
 function draw() {
-  snake.update(frameCount, canvasWidth, canvasHeight);
+  snake.update(frameCount, width, height);
   snake.draw(frameCount);
 }
 
