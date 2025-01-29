@@ -1,51 +1,48 @@
 /**
+ * P5 color type
  * @typedef {import("p5").Color} Color
  */
 
 /**
+ * If the program is running on windowsketch.art
  * @type {boolean}
  */
 const WINDOW_SKETCH = false;
 
 /**
+ * P5 Black color
  * @type {Color}
  */
 let BLACK;
 
 /**
- * @type {number}
- */
-let canvasWidth;
-
-/**
- * @type {number}
- */
-let canvasHeight;
-
-/**
+ * Max number of circles allowed on the screen
  * @type {number}
  */
 let maxCircles;
 
 /**
+ * Current number of circles on the screen
  * @type {number}
  */
 let numCircles = 0;
 
 /**
+ * P5js value for the current background color
  * @type {Color}
  */
 let backgroundColor;
 
 /**
- * @type {VoidFunction}
+ * Current drawing step to add a circle
+ * @type {() => void}
  */
 let drawingStep;
 
 const drawRandCircle = () => {
   const diameter = random(25, 51);
 
-  circle(random(0, canvasWidth + 1), random(0, canvasHeight + 1), diameter);
+  circle(random(0, width + 1), random(0, height + 1), diameter);
 };
 
 const addDots = () => {
@@ -74,8 +71,8 @@ const coverDots = () => {
 };
 
 const init = () => {
-  canvasWidth = windowWidth;
-  canvasHeight = windowHeight;
+  let canvasWidth = windowWidth;
+  let canvasHeight = windowHeight;
 
   if (WINDOW_SKETCH) {
     canvasWidth = 390;
@@ -83,7 +80,7 @@ const init = () => {
   }
 
   backgroundColor = color(200, 170, 220);
-  maxCircles = (windowWidth + windowHeight) * 2;
+  maxCircles = (canvasWidth + canvasHeight) * 2;
   numCircles = 0;
   drawingStep = addDots;
 
