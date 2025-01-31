@@ -15,10 +15,12 @@ const init = () => {
   background(255);
   colorMode(HSB, 360, 100, 100);
 
-  snakeCount = Math.ceil(width / 250);
+  strokeWeight(Math.min(width / 500, 1.6));
+
+  snakeCount = Math.ceil(height / 150);
   snakes.length = 0;
   for (let i = 0; i < snakeCount; ++i) {
-    snakes.push(new Snake(width / 2, height / 2, 15, height / 25));
+    snakes.push(new Snake(width / 2, height / 2, 15, Math.min(width / 30, 20)));
   }
 };
 
