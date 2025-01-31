@@ -38,6 +38,13 @@ const init = () => {
   noStroke();
 };
 
+const reSeededInit = () => {
+  randomSeed(Date.now());
+  noiseSeed(Date.now());
+
+  init();
+};
+
 function setup() {
   init();
 }
@@ -49,7 +56,7 @@ function draw() {
   }
 
   if (frameCount % (duration * framerate) == 0) {
-    init();
+    reSeededInit();
   }
 }
 
