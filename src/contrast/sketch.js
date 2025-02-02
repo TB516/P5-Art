@@ -90,3 +90,5 @@ function windowResized() {
 window.setup = setup;
 window.draw = draw;
 window.windowResized = windowResized;
+
+export {};
