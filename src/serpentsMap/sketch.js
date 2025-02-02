@@ -24,7 +24,7 @@ let snakeCount;
 
 const init = () => {
   createCanvas(windowWidth, windowHeight);
-  background(255);
+  background(0);
   colorMode(HSB, 360, 100, 100);
 
   frameRate(framerate);
@@ -32,7 +32,7 @@ const init = () => {
   snakeCount = 100;
   snakes.length = 0;
   for (let i = 0; i < snakeCount; ++i) {
-    snakes.push(new Snake(width / 2, height / 2, 15, 26, 2, framerate * 10));
+    snakes.push(new Snake(width / 2, height / 2, 15, 8, 2, framerate * 5));
   }
 
   noStroke();
