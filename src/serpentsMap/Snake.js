@@ -121,8 +121,10 @@ export class Snake {
     for (let i = 1; i < this.bodyLength; ++i) {
       const posStorage2 = new Position(this.body[i].x, this.body[i].y);
 
-      this.body[i].x = posStorage.x;
-      this.body[i].y = posStorage.y;
+      this.body[i].x =
+        posStorage.x + randomGaussian(this.gaussianMean, this.gaussianSd);
+      this.body[i].y =
+        posStorage.y + randomGaussian(this.gaussianMean, this.gaussianSd);
 
       posStorage.x = posStorage2.x;
       posStorage.y = posStorage2.y;
