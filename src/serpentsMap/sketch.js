@@ -32,7 +32,9 @@ const init = () => {
   snakeCount = 100;
   snakes.length = 0;
   for (let i = 0; i < snakeCount; ++i) {
-    snakes.push(new Snake(width / 2, height / 2, 15, 8, 2, framerate * 5));
+    snakes.push(
+      new Snake(width / 2, height / 2, 15, 8, 2, duration * framerate * (3 / 5))
+    );
   }
 
   noStroke();
