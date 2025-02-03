@@ -2,7 +2,7 @@
   "compilerOptions": {
     "checkJs": true,
     "allowJs": true,
-    "types": ["@types/p5/global.d.ts", "./types/window.d.ts"] // Ensure p5.js types are included
+    "types": ["@types/p5/global.d.ts", "./types/window.d.ts"]
   },
-  "include": ["./src/*/*.js", "./src/*/*.mjs"] // Update this to match your folder structure
+  "include": ["./src/*/*.js", "./src/*/sketch.mjs"]
 }
