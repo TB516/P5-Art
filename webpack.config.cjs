@@ -4,8 +4,8 @@ const fs = require("fs");
 
 // Dynamically generate entries for each project
 const entries = fs.readdirSync("./src/").reduce((acc, dir) => {
-  if (fs.existsSync(`./src/${dir}/sketch.js`)) {
-    acc[dir] = `./src/${dir}/sketch.js`;
+  if (fs.existsSync(`./src/${dir}/sketch.mjs`)) {
+    acc[dir] = `./src/${dir}/sketch.mjs`;
   }
   return acc;
 }, {});
