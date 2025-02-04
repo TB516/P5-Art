@@ -74,7 +74,7 @@ function setup() {
 }
 
 function draw() {
-  if (frameCount % 6 === 0) background(0, 50);
+  background(0, 75 / 6);
 
   for (let i = 0; i < grainCount; ++i) {
     const mappedX = map(grains[i].x, 0, width, 0, sketchBackground.width);
