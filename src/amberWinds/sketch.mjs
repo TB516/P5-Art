@@ -38,7 +38,7 @@ let grains = [];
 /**
  * @type {Number}
  */
-const grainCount = 5000;
+const grainCount = 2000;
 
 const init = () => {
   createCanvas(windowWidth, windowHeight);
