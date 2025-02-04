@@ -6,11 +6,6 @@ import { Position } from "../utils/Position.js";
 let sketchBackground;
 
 /**
- * @type {import("p5").Graphics}
- */
-let backBuffer;
-
-/**
  * @type {number[][]}
  */
 let field = [];
@@ -43,9 +38,6 @@ const grainCount = 4000;
 const init = () => {
   createCanvas(windowWidth, windowHeight);
   angleMode(DEGREES);
-
-  backBuffer = createGraphics(width, height);
-  backBuffer.background(0, 50);
 
   //#region Flow Field
   field.length = 0;
@@ -82,7 +74,7 @@ function setup() {
 }
 
 function draw() {
-  if (frameCount % 6 === 0) image(backBuffer, 0, 0, width, height);
+  if (frameCount % 6 === 0) background(0, 50);
 
   for (let i = 0; i < grainCount; ++i) {
     const mappedX = map(grains[i].x, 0, width, 0, sketchBackground.width);
