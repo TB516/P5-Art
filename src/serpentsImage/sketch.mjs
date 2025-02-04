@@ -55,10 +55,10 @@ const init = () => {
         width / 2,
         height / 2,
         15,
-        12,
+        20,
+        2,
         1,
-        1,
-        duration * framerate * (3 / 5)
+        duration * framerate * (2 / 5)
       )
     );
   }
