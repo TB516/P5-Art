@@ -1,13 +1,14 @@
-/**
- * @typedef {import("p5").Image} Image
- */
-
 import { Position } from "../utils/Position";
 
 /**
- * @type {Image}
+ * @type {import("p5").Image}
  */
 let sketchBackground;
+
+/**
+ * @type {import("p5").Graphics}
+ */
+let backBuffer;
 
 /**
  * @type {number[][]}
@@ -37,21 +38,26 @@ let grains = [];
 /**
  * @type {Number}
  */
-const grainCount = 2000;
+const grainCount = 5000;
 
 const init = () => {
   createCanvas(windowWidth, windowHeight);
+  angleMode(DEGREES);
+
+  backBuffer = createGraphics(width, height);
+  backBuffer.background(0, 50);
 
   //#region Flow Field
   field.length = 0;
-  cellCount = 50;
+  cellCount = 100;
   xGap = width / cellCount;
   yGap = height / cellCount;
 
   for (let x = 0, i = 0; x < width; x += xGap) {
     field.push([]);
     for (let y = 0; y < height; y += yGap) {
-      field[i].push(noise(x, y));
+      const angle = noise(x, y) * cos(width + x) * sin(height + y) * random(90);
+      field[i].push(angle);
     }
     i++;
   }
@@ -76,7 +82,7 @@ function setup() {
 }
 
 function draw() {
-  background(0);
+  if (frameCount % 6 === 0) image(backBuffer, 0, 0, width, height);
 
   for (let i = 0; i < grainCount; ++i) {
     const mappedX = map(grains[i].x, 0, width, 0, sketchBackground.width);
