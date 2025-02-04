@@ -58,7 +58,7 @@ const init = () => {
         20,
         2,
         1,
-        duration * framerate * (2 / 5)
+        (duration * framerate) / 15
       )
     );
   }
