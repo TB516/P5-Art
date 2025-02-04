@@ -48,7 +48,7 @@ const init = () => {
   for (let x = 0, i = 0; x < width; x += xGap) {
     field.push([]);
     for (let y = 0; y < height; y += yGap) {
-      const angle = noise(x, y) * cos(width + x) * sin(height + y) * random(90);
+      const angle = noise(x, y) * cos(width + x) * sin(height + y) * random(30);
       field[i].push(angle);
     }
     i++;
