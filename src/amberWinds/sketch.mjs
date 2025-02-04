@@ -1,4 +1,4 @@
-import { Position } from "../utils/Position";
+import { Position } from "../utils/Position.js";
 
 /**
  * @type {import("p5").Image}
