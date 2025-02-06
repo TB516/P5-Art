@@ -92,10 +92,6 @@ function preload() {
   images.push(loadImage("https://i.imgur.com/3jK1dJv.jpeg"));
   //Lochs
   images.push(loadImage("https://i.imgur.com/Bfda37i.jpeg"));
-
-  for (let i = 0; i < images.length; ++i) {
-    images[i].loadPixels();
-  }
 }
 
 /**
