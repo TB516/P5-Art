@@ -11,10 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.2.2
+        with:
+          ref: prod
 
       - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v4.1.0
         with:
           version: latest
 
@@ -31,22 +33,26 @@ jobs:
         run: pnpm build
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4.6.0
         with:
+          name: dist
           path: dist
           if-no-files-found: error
           overwrite: true
 
   deploy:
+    needs: bundle
+
     runs-on: ubuntu-latest
     environment:
       name: ppl-deployment
 
     steps:
       - name: Download Artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v4.1.8
         with:
           name: dist
+          path: ./dist
 
       - name: SFTP Deploy
         uses: wlixcc/SFTP-Deploy-Action@v1.2.5
@@ -54,7 +60,6 @@ jobs:
           server: ${{secrets.SERVER}}
           username: ${{secrets.USERNAME}}
           password: ${{secrets.PASSWORD}}
-          ssh_private_key:
           local_path: ./dist/*
           remote_path: ${{secrets.PATH}}
           delete_remote_files: true
