@@ -1,0 +1,60 @@
+name: Deploy scripts
+
+on:
+  push:
+    branches: ["prod"]
+  pull_request:
+    branches: ["prod"]
+
+jobs:
+  bundle:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: latest
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/jod
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Bundle
+        run: pnpm build
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          path: dist
+          if-no-files-found: error
+          overwrite: true
+
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: ppl-deployment
+
+    steps:
+      - name: Download Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+
+      - name: SFTP Deploy
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.5
+        with:
+          server: ${{secrets.SERVER}}
+          username: ${{secrets.USERNAME}}
+          password: ${{secrets.PASSWORD}}
+          ssh_private_key:
+          local_path: ./dist/*
+          remote_path: ${{secrets.PATH}}
+          delete_remote_files: true
