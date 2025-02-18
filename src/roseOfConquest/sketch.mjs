@@ -5,25 +5,29 @@ import { Cell } from "./cell";
  * Number of cells along the X axis.
  * @type {number}
  */
-const xCount = 30;
+const xCount = 100;
 
 /**
  * Number of cells along the Y Axis.
  * @type {number}
  */
-const yCount = 30;
+const yCount = 100;
 
 /**
  * 2D Array of Cells.
  * @type {Cell[][]}
  */
 const cells = [];
+
+const neighborXRange = 2;
+
+const neighborYRange = 6;
 //#endregion
 
 //#region Color fields
-const hueData = { min: 0, max: 360, offset: 90 };
-const saturationData = { min: 55, max: 75, offset: 15 };
-const lightnessData = { min: 55, max: 70, offset: 0 };
+const hueData = { min: 0, max: 360, offset: 30 };
+const saturationData = { min: 45, max: 75, offset: 10 };
+const lightnessData = { min: 60, max: 70, offset: 15 };
 
 /**
  * Top side color
@@ -61,7 +65,7 @@ const init = () => {
   //#endregion
 
   //#region Cell code
-  const cellWidth = Math.trunc(windowWidth / xCount);
+  const cellWidth = windowWidth / xCount;
   const cellHeight = windowHeight / yCount;
 
   cells.length = 0;
@@ -75,16 +79,38 @@ const init = () => {
       cells[i].push(
         new Cell(x, y, cellWidth, cellHeight, y <= height / 2 ? 0 : 1)
       );
-      cells[i][j].update(null, colorT, colorB);
     }
   }
 
   for (let i = 0; i < xCount; ++i) {
     for (let j = 0; j < yCount; ++j) {
-      cells[i][j].draw();
+      cells[i][j].draw(colorT, colorB);
     }
   }
   //#endregion
+};
+
+/**
+ * Gets list of neighbors to requested cell.
+ * @param {number} i X coordinate in array.
+ * @param {number} j Y coordinate in array.
+ * @returns {Cell[]} Array of neighbors
+ */
+const getNeighbors = (i, j) => {
+  const neighbors = [];
+
+  for (let x = -neighborXRange; x <= neighborXRange; x++) {
+    for (let y = -neighborYRange; y <= neighborYRange; y++) {
+      if (x === 0 && y === 0) continue;
+      const ni = i + x;
+      const nj = j + y;
+      if (ni >= 0 && ni < xCount && nj >= 0 && nj < yCount) {
+        neighbors.push(cells[ni][nj]);
+      }
+    }
+  }
+
+  return neighbors;
 };
 
 function setup() {
@@ -92,19 +118,17 @@ function setup() {
 }
 
 function draw() {
-  if (frameCount % 20 === 0) {
+  if (frameCount % 2 === 0) {
     for (let i = 0; i < xCount; ++i) {
       for (let j = 0; j < yCount; ++j) {
-        // cells[i][j].update(cells[i][j].state === 0 ? colorT : colorB);
+        cells[i][j].update(getNeighbors(i, j));
       }
     }
   }
 
-  if (frameCount % 60 === 0) {
-    for (let i = 0; i < xCount; ++i) {
-      for (let j = 0; j < yCount; ++j) {
-        cells[i][j].draw();
-      }
+  for (let i = 0; i < xCount; ++i) {
+    for (let j = 0; j < yCount; ++j) {
+      cells[i][j].draw(colorT, colorB);
     }
   }
 }
