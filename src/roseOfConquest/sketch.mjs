@@ -25,9 +25,9 @@ const neighborYRange = 6;
 //#endregion
 
 //#region Color fields
-const hueData = { min: 0, max: 360, offset: 30 };
+const hueData = { min: 0, max: 360, offset: 45 };
 const saturationData = { min: 45, max: 75, offset: 10 };
-const lightnessData = { min: 60, max: 70, offset: 15 };
+const lightnessData = { min: 65, max: 70, offset: 15 };
 
 /**
  * Top side color
