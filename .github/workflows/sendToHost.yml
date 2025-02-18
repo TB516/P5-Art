@@ -60,4 +60,3 @@ jobs:
           password: ${{secrets.PASSWORD}}
           local_path: ./dist/*
           remote_path: ${{secrets.PATH}}
-          delete_remote_files: true
