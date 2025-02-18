@@ -3,6 +3,8 @@ name: Deploy scripts
 on:
   push:
     branches: ["main"]
+  pull_request:
+    branches: ["main"]
 
 jobs:
   bundle:
@@ -28,7 +30,8 @@ jobs:
       - name: Bundle
         run: pnpm build
 
-      - name: Upload Artifact
+      - name: Upload Artifact (Only on Push)
+        if: github.event_name == 'push'
         uses: actions/upload-artifact@v4.6.0
         with:
           name: dist
@@ -38,6 +41,7 @@ jobs:
 
   deploy:
     needs: bundle
+    if: github.event_name == 'push'
 
     runs-on: ubuntu-latest
     environment:
