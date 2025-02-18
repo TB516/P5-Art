@@ -5,13 +5,13 @@ import { Cell } from "./cell.js";
  * Number of cells along the X axis.
  * @type {number}
  */
-const xCount = 100;
+const xCount = 500;
 
 /**
  * Number of cells along the Y Axis.
  * @type {number}
  */
-const yCount = 100;
+const yCount = 125;
 
 /**
  * 2D Array of Cells.
@@ -118,7 +118,7 @@ function setup() {
 }
 
 function draw() {
-  if (frameCount % 2 === 0) {
+  if (frameCount % 1 === 0) {
     for (let i = 0; i < xCount; ++i) {
       for (let j = 0; j < yCount; ++j) {
         cells[i][j].update(getNeighbors(i, j));
