@@ -9,12 +9,12 @@ const prevStates = [];
 
 //prettier-ignore
 const transformations = {
-  "L": "ALB",
+  "L": "ALBR",
   "R": "BARR",
   "Y": "Y",
   "X": "X",
-  "A": "ARXRBALLABYRARA",
-  "B": "BRB"
+  "A": "A",
+  "B": "ARXRBALLABYRARA"
 };
 
 //prettier-ignore
@@ -32,7 +32,7 @@ const rules = {
     rules.L();
     rules.A();
     prevStates.push(JSON.stringify(state));
-    state.len = Math.trunc(state.len / 2);
+    state.len = Math.trunc(state.len / 1.25);
   },
   "A": () => {
     state.xPos += state.len * cos(state.theta);
@@ -62,8 +62,8 @@ const rules = {
   }
 };
 
-const SEED = "ABLAABBXLLAAYBBA";
-const NUM_GENERATIONS = 1;
+const SEED = "ABLXABLAABBXLLAAYBBAYA";
+const NUM_GENERATIONS = 5;
 
 let axiom;
 
@@ -71,7 +71,7 @@ const init = () => {
   createCanvas(windowWidth, windowHeight);
   background(0);
 
-  fill(0);
+  fill(0, 0);
 
   axiom = `${SEED}`;
 
