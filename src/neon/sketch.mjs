@@ -13,7 +13,7 @@ const transformations = {
   "R": "BARR",
   "Y": "Y",
   "X": "X",
-  "A": "ARRBALLABRARA",
+  "A": "ARXRBALLABYRARA",
   "B": "BRB"
 };
 
@@ -32,6 +32,7 @@ const rules = {
     rules.L();
     rules.A();
     prevStates.push(JSON.stringify(state));
+    state.len = Math.trunc(state.len / 2);
   },
   "A": () => {
     state.xPos += state.len * cos(state.theta);
@@ -61,7 +62,7 @@ const rules = {
   }
 };
 
-const SEED = "ABLAXABBLLAYBBA";
+const SEED = "ABLAABBXLLAAYBBA";
 const NUM_GENERATIONS = 1;
 
 let axiom;
