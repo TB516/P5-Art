@@ -1,6 +1,6 @@
 let state = {
-  xPos: width / 2,
-  yPos: height / 2,
+  xPos: 0,
+  yPos: 0,
   theta: 60,
   len: 25,
 };
