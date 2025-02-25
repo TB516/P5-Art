@@ -61,7 +61,7 @@ const rules = {
   }
 };
 
-const SEED = "AXABBLLAY";
+const SEED = "ABLAXABBLLAYBBA";
 const NUM_GENERATIONS = 1;
 
 let axiom;
