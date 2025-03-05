@@ -64,6 +64,12 @@ export class Cell {
   deltaAge = 24;
 
   /**
+   * List of references to neighbors.
+   * @type {Cell[]}
+   */
+  neighbors;
+
+  /**
    * Creates a new cell with entered data.
    * @param {number} x X position of the cell.
    * @param {number} y Y position of the cell.
@@ -86,11 +92,18 @@ export class Cell {
   }
 
   /**
-   * Updates the cell's logic. Runs game of life rules and starts aging when it dies.
-   * @param {Cell[]} neighbors List of neighboring cells.
+   * Sets the neighbor references.
+   * @param {Cell[]} neighbors List of references to neighbors
    */
-  update(neighbors) {
-    const aliveNeighbors = neighbors.filter(
+  setNeighbors(neighbors) {
+    this.neighbors = neighbors;
+  }
+
+  /**
+   * Updates the cell's logic. Runs game of life rules and starts aging when it dies.
+   */
+  update() {
+    const aliveNeighbors = this.neighbors.filter(
       (neighbor) => neighbor.state === 1
     ).length;
 
