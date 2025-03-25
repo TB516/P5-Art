@@ -1,34 +1,28 @@
+/**
+ * @typedef {import("p5").Color} Color
+ */
+
 export class Fruit {
   x;
   y;
   size;
-  isCollected;
+  color;
 
   /**
    * Creates new fruit object
    * @param {number} x X pos
    * @param {number} y Y pos
+   * @param {Color} fruitColor color of fruit
    */
-  constructor(x, y) {
+  constructor(x, y, fruitColor = color(255, 0, 0)) {
     this.x = x;
     this.y = y;
-    this.size = 10;
-    this.isBeingCarried = false;
-    this.isCollected = false;
-  }
-
-  collectedTrigger() {
-    this.isCollected = true;
-
-    setTimeout(() => {
-      this.isCollected = false;
-    }, 10000);
+    this.size = 25;
+    this.color = fruitColor;
   }
 
   draw() {
-    if (this.isCollected) return;
-
-    fill(255, 0, 0);
-    circle(this.x, this.y, this.size);
+    fill(this.color);
+    ellipse(this.x, this.y, this.size, this.size);
   }
 }
