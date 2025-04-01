@@ -179,7 +179,7 @@ const drawHitomezashiGrid = () => {
 };
 
 const init = () => {
-  // createCanvas(windowWidth, windowHeight);
+  createCanvas(windowWidth, windowHeight);
   background(255);
 
   drawLSystem();

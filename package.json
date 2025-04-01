@@ -4,7 +4,7 @@
   "description": "",
   "type": "module",
   "scripts": {
-    "build": "webpack",
+    "build": "gulp build",
     "pretest": "eslint"
   },
   "keywords": [],
@@ -14,8 +14,9 @@
     "@types/p5": "^1.7.6",
     "eslint": "^9.19.0",
     "eslint-plugin-jsdoc": "^50.6.3",
+    "gulp": "^5.0.0",
+    "gulp-replace": "^1.1.4",
     "terser-webpack-plugin": "^5.3.11",
-    "webpack": "^5.97.1",
-    "webpack-cli": "^6.0.1"
+    "webpack": "^5.97.1"
   }
 }

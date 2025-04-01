@@ -7,13 +7,13 @@ const framerate = 24;
  * Number of cells along the X axis.
  * @type {number}
  */
-const xCount = 125;
+const xCount = 150;
 
 /**
  * Number of cells along the Y Axis.
  * @type {number}
  */
-const yCount = 125;
+const yCount = 150;
 
 /**
  * 2D Array of Cells.
@@ -79,6 +79,15 @@ const init = () => {
       );
     }
   }
+
+  for (let i = 0; i < xCount; ++i) {
+    for (let j = 0; j < yCount; ++j) {
+      const x = i * cellWidth;
+      const y = j * cellHeight;
+
+      cells[i][j].setNeighbors(getNeighbors(i, j));
+    }
+  }
 };
 
 function setup() {
@@ -88,7 +97,7 @@ function setup() {
 function draw() {
   for (let i = 0; i < xCount; ++i) {
     for (let j = 0; j < yCount; ++j) {
-      cells[i][j].update(getNeighbors(i, j));
+      cells[i][j].update();
     }
   }
 
