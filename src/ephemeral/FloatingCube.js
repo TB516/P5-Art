@@ -22,11 +22,7 @@ export class FloatingCube {
   draw() {
     push();
     fill(0);
-    translate(
-      this.cube.position.x + this.cube.length / 2,
-      this.cube.position.y + this.cube.height / 2,
-      this.cube.position.z + this.cube.width / 2
-    );
+    translate(this.cube.position.x, this.cube.position.y, this.cube.position.z);
     box(this.cube.length, this.cube.height, this.cube.width);
     pop();
   }
