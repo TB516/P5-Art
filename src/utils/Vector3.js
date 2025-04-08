@@ -1,4 +1,4 @@
-export class Position {
+export class Vector3 {
   /**
    * @type {number}
    */
@@ -7,13 +7,19 @@ export class Position {
    * @type {number}
    */
   y;
+  /**
+   * @type {number}
+   */
+  z;
 
   /**
    * @param {number} x
    * @param {number} y
+   * @param {number} z
    */
-  constructor(x, y) {
+  constructor(x, y, z) {
     this.x = x;
     this.y = y;
+    this.z = z;
   }
 }

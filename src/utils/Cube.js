@@ -1,8 +1,8 @@
-import { Position3 } from "./Position3.js";
+import { Vector3 } from "./Vector3.js";
 
 export class Cube {
   /**
-   * @type {Position3}
+   * @type {Vector3}
    */
   position;
 
@@ -31,7 +31,7 @@ export class Cube {
    * @param {number} height Height of cube (Y axis).
    */
   constructor(x, y, z, length, width, height) {
-    this.position = new Position3(x, y, z);
+    this.position = new Vector3(x, y, z);
     this.length = length;
     this.width = width;
     this.height = height;

@@ -1,4 +1,4 @@
-import { Position } from "../utils/Position.js";
+import { Vector2 } from "../utils/Vector2.js";
 
 /**
  * @type {import("p5").Image}
@@ -26,7 +26,7 @@ let xGap;
 let yGap;
 
 /**
- * @type {Position[]}
+ * @type {Vector2[]}
  */
 let grains = [];
 
@@ -58,7 +58,7 @@ const init = () => {
   //#region Grain setup
   grains.length = 0;
   for (let i = 0; i < grainCount; ++i) {
-    grains.push(new Position(random(0, width + 1), random(0, height + 1)));
+    grains.push(new Vector2(random(0, width + 1), random(0, height + 1)));
   }
   //#endregion
 

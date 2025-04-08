@@ -1,3 +1,4 @@
+import { Vector3 } from "../utils/Vector3.js";
 import { FloatingCube } from "./FloatingCube.js";
 
 /**
@@ -5,8 +6,13 @@ import { FloatingCube } from "./FloatingCube.js";
  */
 const grid = [];
 
-const gridWidth = 1;
-const gridHeight = 1;
+/**
+ * @type {Vector3}
+ */
+const lightPos = new Vector3(0, 0, 100);
+
+const gridWidth = 50;
+const gridHeight = 50;
 
 /**
  * @type {number}
@@ -23,7 +29,6 @@ let zSize;
 
 const init = () => {
   createCanvas(windowWidth, windowHeight, WEBGL);
-  background(255, 0, 0);
 
   xSize = width / gridWidth;
   ySize = height / gridHeight;
@@ -36,27 +41,31 @@ const init = () => {
     grid.push([]);
     for (let j = 0; j < gridHeight; ++j) {
       grid[i].push(new FloatingCube(x, y, 0, xSize, zSize, ySize));
-      y += ySize;
+      x += xSize;
     }
-    x += xSize;
+    x = 0;
+    y += ySize;
   }
 };
+
+const moveLight = () => {};
 
 function setup() {
   init();
 }
 
 function draw() {
-  background(255, 0, 0);
   translate(-width / 2, -height / 2);
 
-  sphere(10);
+  pointLight(0, 255, 0, lightPos.x, lightPos.y, lightPos.z);
 
-  // for (let i = 0; i < gridWidth; ++i) {
-  //   for (let j = 0; j < gridHeight; ++j) {
-  //     grid[i][j].draw();
-  //   }
-  // }
+  moveLight();
+
+  for (let i = 0; i < gridWidth; ++i) {
+    for (let j = 0; j < gridHeight; ++j) {
+      grid[i][j].draw();
+    }
+  }
 }
 
 function windowResized() {
