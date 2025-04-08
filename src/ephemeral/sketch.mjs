@@ -5,7 +5,7 @@ import { FloatingCube } from "./FloatingCube.js";
  */
 const grid = [];
 
-const gridWidth = 2;
+const gridWidth = 1;
 const gridHeight = 1;
 
 /**
@@ -24,8 +24,6 @@ let zSize;
 const init = () => {
   createCanvas(windowWidth, windowHeight, WEBGL);
   background(255, 0, 0);
-
-  translate(-width / 2, -height / 2);
 
   xSize = width / gridWidth;
   ySize = height / gridHeight;
@@ -50,12 +48,15 @@ function setup() {
 
 function draw() {
   background(255, 0, 0);
+  translate(-width / 2, -height / 2);
 
-  for (let i = 0; i < gridWidth; ++i) {
-    for (let j = 0; j < gridHeight; ++j) {
-      grid[i][j].draw();
-    }
-  }
+  sphere(10);
+
+  // for (let i = 0; i < gridWidth; ++i) {
+  //   for (let j = 0; j < gridHeight; ++j) {
+  //     grid[i][j].draw();
+  //   }
+  // }
 }
 
 function windowResized() {
