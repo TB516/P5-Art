@@ -1,4 +1,4 @@
-import { Position } from "../utils/Position.js";
+import { Vector2 } from "../utils/Vector2.js";
 
 /**
  * @typedef {import("p5").Image} Image
@@ -13,7 +13,7 @@ export class Snake {
   background;
   /**
    * List of snake body positions.
-   * @type {Position[]}
+   * @type {Vector2[]}
    * @readonly
    */
   body;
@@ -114,7 +114,7 @@ export class Snake {
     this.body = [];
 
     for (let i = 0; i < bodyLength; ++i) {
-      this.body.push(new Position(startingX, startingY));
+      this.body.push(new Vector2(startingX, startingY));
     }
   }
 
@@ -125,7 +125,7 @@ export class Snake {
    * @param {number} canvasHeight Height of canvas.
    */
   update(frameCount, canvasWidth, canvasHeight) {
-    let posStorage = new Position(this.body[0].x, this.body[0].y);
+    let posStorage = new Vector2(this.body[0].x, this.body[0].y);
 
     //#region Head
     this.body[0].x +=
@@ -152,7 +152,7 @@ export class Snake {
 
     //#region Update tail position
     for (let i = 1; i < this.bodyLength; ++i) {
-      const posStorage2 = new Position(this.body[i].x, this.body[i].y);
+      const posStorage2 = new Vector2(this.body[i].x, this.body[i].y);
 
       this.body[i].x =
         posStorage.x + randomGaussian(this.gaussianMean, this.gaussianSd);

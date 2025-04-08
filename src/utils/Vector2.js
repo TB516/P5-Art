@@ -1,4 +1,4 @@
-export class Position {
+export class Vector2 {
   /**
    * @type {number}
    */
