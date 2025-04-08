@@ -31,9 +31,7 @@ export class Cube {
    * @param {number} height Height of cube (Y axis).
    */
   constructor(x, y, z, length, width, height) {
-    this.position.x = x;
-    this.position.y = y;
-    this.position.z = z;
+    this.position = new Position3(x, y, z);
     this.length = length;
     this.width = width;
     this.height = height;
