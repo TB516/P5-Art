@@ -8,4 +8,5 @@ interface Window {
   touchStarted?: VoidFunction;
   touchMoved?: VoidFunction;
   touchEnded?: VoidFunction;
+  p5: typeof import("p5");
 }
