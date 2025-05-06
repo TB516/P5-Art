@@ -1,7 +1,7 @@
 /**
  * @type {number}
  */
-const maxDepth = 10;
+const maxDepth = 15;
 
 /**
  * @type {{x: number, y: number, radius: number}[][]}
